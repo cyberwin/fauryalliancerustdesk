@@ -1,11 +1,11 @@
 [package]
-name = "rustdesk"
+name = "fauryalliancerustdesk"
 version = "1.4.2"
 authors = ["rustdesk <info@rustdesk.com>"]
 edition = "2021"
 build= "build.rs"
-description = "RustDesk Remote Desktop"
-default-run = "rustdesk"
+description = "fauryalliancerustdesk Remote Desktop"
+default-run = "fauryalliancerustdesk"
 rust-version = "1.75"
 
 [lib]
