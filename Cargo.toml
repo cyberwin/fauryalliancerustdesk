@@ -1,10 +1,10 @@
 [package]
-name = "fauryalliancerustdesk"
+name = "rustdesk"
 version = "1.4.2"
 authors = ["rustdesk <info@rustdesk.com>"]
 edition = "2021"
 build= "build.rs"
-description = "fauryalliancerustdesk Remote Desktop"
+description = "RustDesk Remote Desktop"
 default-run = "rustdesk"
 rust-version = "1.75"
 
@@ -159,78 +159,4 @@ keepawake = { git = "https://github.com/rustdesk-org/keepawake-rs" }
 
 [target.'cfg(any(target_os = "windows", target_os = "linux"))'.dependencies]
 wallpaper = { git = "https://github.com/rustdesk-org/wallpaper.rs" }
-tiny-skia = "0.11"
-softbuffer = "0.4"
-fontdb = "0.23"
-bytemuck = "1.23"
-ttf-parser = "0.25"
-
-[target.'cfg(any(target_os = "macos", target_os = "windows"))'.dependencies]
-# https://github.com/rustdesk/rustdesk-server-pro/issues/189, using native-tls for better tls support
-reqwest = { git = "https://github.com/rustdesk-org/reqwest", features = ["blocking", "socks", "json", "native-tls", "gzip"], default-features=false }
-
-[target.'cfg(not(any(target_os = "macos", target_os = "windows")))'.dependencies]
-reqwest = { git = "https://github.com/rustdesk-org/reqwest", features = ["blocking", "socks", "json", "rustls-tls", "rustls-tls-native-roots", "gzip"], default-features=false }
-
-[target.'cfg(target_os = "linux")'.dependencies]
-psimple = { package = "libpulse-simple-binding", version = "2.27" }
-pulse = { package = "libpulse-binding", version = "2.27" }
-rust-pulsectl = { git = "https://github.com/rustdesk-org/pulsectl" }
-async-process = "1.7"
-evdev = { git="https://github.com/rustdesk-org/evdev" }
-dbus = "0.9"
-dbus-crossroads = "0.5"
-pam = { git="https://github.com/rustdesk-org/pam" }
-users = { version = "0.11" }
-x11-clipboard = {git="https://github.com/clslaid/x11-clipboard", branch = "feat/store-batch", optional = true}
-x11rb =  {version = "0.12", features = ["all-extensions"], optional = true}
-percent-encoding = {version = "2.3", optional = true}
-once_cell = {version = "1.18", optional = true}
-nix = { version = "0.29", features = ["term", "process"]}
-gtk = "0.18"
-termios = "0.3"
-terminfo = "0.8"
-winit = "0.30"
-
-[target.'cfg(target_os = "android")'.dependencies]
-android_logger = "0.13"
-jni = "0.21"
-android-wakelock = { git = "https://github.com/rustdesk-org/android-wakelock" }
-
-[workspace]
-members = ["libs/scrap", "libs/hbb_common", "libs/enigo", "libs/clipboard", "libs/virtual_display", "libs/virtual_display/dylib", "libs/portable", "libs/remote_printer"]
-exclude = ["vdi/host", "examples/custom_plugin"]
-
-[package.metadata.winres]
-LegalCopyright = "Copyright © 2025 Purslane Ltd. All rights reserved."
-ProductName = "fauryalliancerustdesk"
-FileDescription = "fauryalliancerustdesk Remote Desktop"
-OriginalFilename = "rustdesk.exe"
-
-[target.'cfg(target_os="windows")'.build-dependencies]
-winres = "0.1"
-winapi = { version = "0.3", features = [ "winnt", "pdh", "synchapi" ] }
-
-[build-dependencies]
-cc = "1.0"
-hbb_common = { path = "libs/hbb_common" }
-os-version = "0.2"
-
-[dev-dependencies]
-hound = "3.5"
-docopt = "1.1"
-
-[package.metadata.bundle]
-name = "fauryalliancerustdesk"
-identifier = "com.carriez.rustdesk"
-icon = ["res/32x32.png", "res/128x128.png", "res/128x128@2x.png"]
-osx_minimum_system_version = "10.14"
-
-#https://github.com/johnthagen/min-sized-rust
-[profile.release]
-lto = true
-codegen-units = 1
-panic = 'abort'
-strip = true
-#opt-level = 'z' # only have smaller size after strip
-rpath = true
+tiny-skia = "0.1
